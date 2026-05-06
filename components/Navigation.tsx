@@ -22,11 +22,12 @@ export default function Navigation() {
         <Link href="/" className="flex items-center">
           <Image
             src="/images/logo.png"
-            alt="Infinity Digital Dev"
-            width={48}
-            height={48}
-            className="h-12 w-auto"
-            priority
+alt="Infinity Digital Dev"
+width={200}
+height={67}
+className="h-10 w-auto"
+quality={100}
+priority
           />
         </Link>
 
