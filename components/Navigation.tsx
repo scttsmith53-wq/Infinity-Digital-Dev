@@ -23,9 +23,9 @@ export default function Navigation() {
           <Image
             src="/images/logo.png"
             alt="Infinity Digital Dev"
-            width={180}
+            width={48}
             height={48}
-            className="h-10 w-auto"
+            className="h-12 w-auto"
             priority
           />
         </Link>
