@@ -5,7 +5,7 @@ import Footer from '@/components/Footer'
 
 export const metadata = { title: 'Employee Swag Stores | Infinity Digital Dev' }
 
-const catalogItems = [
+const catalogItems: { name: string; desc: string; img?: string; icon?: string }[] = [
   { img: '/images/swag-hoodie.png', name: 'Apparel', desc: 'T-shirts, polos, hoodies' },
   { img: '/images/swag-hat.png', name: 'Headwear', desc: 'Hats, beanies, visors' },
   { img: '/images/swag-bottle.png', name: 'Drinkware', desc: 'Mugs, tumblers, bottles' },
