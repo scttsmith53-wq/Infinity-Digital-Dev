@@ -5,11 +5,14 @@ import Footer from '@/components/Footer'
 
 export const metadata = { title: 'Employee Swag Stores | Infinity Digital Dev' }
 
-const catalogItems: { name: string; desc: string; img?: string; icon?: string }[] = [
+const catalogImgItems = [
   { img: '/images/swag-hoodie.png', name: 'Apparel', desc: 'T-shirts, polos, hoodies' },
   { img: '/images/swag-hat.png', name: 'Headwear', desc: 'Hats, beanies, visors' },
   { img: '/images/swag-bottle.png', name: 'Drinkware', desc: 'Mugs, tumblers, bottles' },
   { img: '/images/swag-golf.png', name: 'Accessories', desc: 'Golf balls, pens, keychains' },
+]
+
+const catalogIconItems = [
   { icon: 'shopping_bag', name: 'Bags & Totes', desc: 'Eco-friendly bags' },
   { icon: 'inventory_2', name: 'Event Kits', desc: 'Tradeshows & onboarding packs' },
 ]
@@ -19,7 +22,6 @@ export default function SwagStoresPage() {
     <main>
       <Navigation />
 
-      {/* Hero */}
       <section className="px-margin py-xxl bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-xxl">
           <div className="flex-1 space-y-lg">
@@ -38,8 +40,6 @@ export default function SwagStoresPage() {
               </Link>
             </div>
           </div>
-
-          {/* Product grid with real images */}
           <div className="flex-1 w-full">
             <div className="bg-surface p-xl rounded-xl border border-outline/20 shadow-sm">
               <div className="grid grid-cols-2 gap-md">
@@ -51,12 +51,7 @@ export default function SwagStoresPage() {
                 ].map((item) => (
                   <div key={item.name} className="bg-background p-md rounded-lg border border-outline/20 flex flex-col items-center gap-sm">
                     <div className="w-full aspect-square relative rounded-lg overflow-hidden">
-                      <Image
-                        src={item.src}
-                        alt={item.name}
-                        fill
-                        className="object-cover"
-                      />
+                      <Image src={item.src} alt={item.name} fill className="object-cover" />
                     </div>
                     <div className="text-center">
                       <p className="text-label-md font-medium text-on-surface">{item.name}</p>
@@ -70,7 +65,6 @@ export default function SwagStoresPage() {
         </div>
       </section>
 
-      {/* How It Works */}
       <section className="px-margin py-xxl bg-surface">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-h1 font-bold text-on-surface mb-xxl text-center">How It Works</h2>
@@ -81,9 +75,7 @@ export default function SwagStoresPage() {
               { n: '3', title: 'Employees shop, orders ship direct', desc: 'Team members browse, buy, and get items shipped straight to their door. Bulk orders available anytime.' },
             ].map((step) => (
               <div key={step.n} className="flex flex-col gap-md">
-                <div className="w-12 h-12 bg-secondary text-on-primary rounded-full flex items-center justify-center font-bold text-h3">
-                  {step.n}
-                </div>
+                <div className="w-12 h-12 bg-secondary text-on-primary rounded-full flex items-center justify-center font-bold text-h3">{step.n}</div>
                 <h3 className="text-h3 font-bold text-on-surface">{step.title}</h3>
                 <p className="text-body-md text-on-surface-variant">{step.desc}</p>
               </div>
@@ -92,20 +84,22 @@ export default function SwagStoresPage() {
         </div>
       </section>
 
-      {/* Catalog */}
       <section id="catalog" className="px-margin py-xxl bg-background">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-h1 font-bold text-on-surface mb-xxl text-center">What&apos;s in the Catalog</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-lg">
-            {catalogItems.map((item) => (
+            {catalogImgItems.map((item) => (
               <div key={item.name} className="bg-surface p-xl rounded-xl border border-outline/20 flex flex-col items-center text-center gap-md hover:border-secondary/40 transition-all">
-                {'img' in item ? (
-                  <div className="w-24 h-24 relative rounded-lg overflow-hidden">
-                    <Image src={item.img} alt={item.name} fill className="object-cover" />
-                  </div>
-                ) : (
-                  <span className="material-symbols-outlined text-secondary text-[40px]">{item.icon}</span>
-                )}
+                <div className="w-24 h-24 relative rounded-lg overflow-hidden">
+                  <Image src={item.img} alt={item.name} fill className="object-cover" />
+                </div>
+                <h4 className="text-h3 font-bold text-on-surface">{item.name}</h4>
+                <p className="text-label-md text-on-surface-variant">{item.desc}</p>
+              </div>
+            ))}
+            {catalogIconItems.map((item) => (
+              <div key={item.name} className="bg-surface p-xl rounded-xl border border-outline/20 flex flex-col items-center text-center gap-md hover:border-secondary/40 transition-all">
+                <span className="material-symbols-outlined text-secondary text-[40px]">{item.icon}</span>
                 <h4 className="text-h3 font-bold text-on-surface">{item.name}</h4>
                 <p className="text-label-md text-on-surface-variant">{item.desc}</p>
               </div>
@@ -114,28 +108,22 @@ export default function SwagStoresPage() {
         </div>
       </section>
 
-      {/* Use Cases */}
       <section className="px-margin py-xxl bg-surface">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-h1 font-bold text-on-surface mb-xl text-center">Two Ways to Use It</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
             <div className="p-xl bg-background rounded-xl border-l-4 border-secondary shadow-sm space-y-md">
               <h3 className="text-h2 font-bold text-on-surface">For Everyday Team Swag</h3>
-              <p className="text-body-md text-on-surface-variant">
-                Employees browse and buy on their own. Great for remote teams, company culture, and team pride. No minimums required.
-              </p>
+              <p className="text-body-md text-on-surface-variant">Employees browse and buy on their own. Great for remote teams, company culture, and team pride. No minimums required.</p>
             </div>
             <div className="p-xl bg-background rounded-xl border-l-4 border-secondary shadow-sm space-y-md">
-              <h3 className="text-h2 font-bold text-on-surface">For Events & Bulk Orders</h3>
-              <p className="text-body-md text-on-surface-variant">
-                Place a single order for a tradeshow, company retreat, or new hire onboarding kit. We handle the rest.
-              </p>
+              <h3 className="text-h2 font-bold text-on-surface">For Events &amp; Bulk Orders</h3>
+              <p className="text-body-md text-on-surface-variant">Place a single order for a tradeshow, company retreat, or new hire onboarding kit. We handle the rest.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why it's worth it */}
       <section className="px-margin py-xxl bg-background border-y border-outline/10">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-h1 font-bold text-on-surface mb-xl text-center">Why It&apos;s Worth It</h2>
@@ -157,15 +145,10 @@ export default function SwagStoresPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="px-margin py-xxl bg-surface">
         <div className="max-w-5xl mx-auto text-center space-y-xl">
-          <h2 className="text-display font-extrabold text-on-surface leading-tight">
-            Every site we build includes the option to add a swag store.
-          </h2>
-          <p className="text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-            Add it to any project — or set one up for your existing business. Setup takes less than a week.
-          </p>
+          <h2 className="text-display font-extrabold text-on-surface leading-tight">Every site we build includes the option to add a swag store.</h2>
+          <p className="text-body-lg text-on-surface-variant max-w-2xl mx-auto">Add it to any project — or set one up for your existing business. Setup takes less than a week.</p>
           <Link href="/contact" className="inline-block bg-secondary text-on-primary px-xxl py-md rounded-lg font-bold text-h3 hover:bg-secondary/90 transition-all">
             Add a Swag Store to My Project
           </Link>
