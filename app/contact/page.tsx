@@ -41,7 +41,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-label-sm text-on-surface-variant">Location</p>
-                <p className="text-body-md font-bold text-on-surface">Pueblo, CO (Remote-Friendly)</p>
+                <p className="text-body-md font-bold text-on-surface">Denver, CO (Remote-Friendly)</p>
               </div>
             </div>
           </div>

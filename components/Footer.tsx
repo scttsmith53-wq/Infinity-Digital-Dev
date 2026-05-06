@@ -20,7 +20,7 @@ export default function Footer() {
               alt="Infinity Digital Dev"
               width={180}
               height={48}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-10 w-auto"
             />
           </Link>
           <p className="text-body-md text-on-surface-variant pr-8">
