@@ -1,3 +1,4 @@
+import React from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -30,7 +31,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
         />
+      </head>
+      <body className={inter.className}>
+        {children}
         <script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="6a0d4c4
+          data-widget-id="6a0d4c480052c9399a6d49dc"
+          data-source="WEB_USER"
+          async={true}
+        ></script>
+      </body>
+    </html>
+  )
+}
