@@ -33,12 +33,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="6a0d39c94d25f2c1d1ec9b74"
-          data-source="WEB_USER"
-          async={true}
-        ></script>
-      </head>
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
-}
+          data-widget-id="6a0d4c4
