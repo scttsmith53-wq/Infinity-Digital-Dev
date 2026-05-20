@@ -26,6 +26,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="dark">
       <head>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
+    rel="stylesheet"
+  />
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="6a0d39c94d25f2c1d1ec9b74"
+    data-source="WEB_USER"
+    async
+  />
+</head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
           rel="stylesheet"
