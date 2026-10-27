@@ -1,0 +1,10 @@
+<section id="contactResearch" class="card panel" hidden>
+ <div class="section-head"><div><p class="eyebrow">EXISTING BUSINESS LEADS</p><h2>Contact research</h2></div><div class="actions"><button id="contactRefresh" class="secondary">Refresh research</button><button id="researchPause" class="secondary">Pause research queue</button></div></div>
+ <p>Find publicly identified owners and managers. Company identity, published email and email deliverability are separate checks. Every candidate requires human review.</p>
+ <div id="contactMetrics" class="metrics"></div>
+ <div class="actions"><label>Batch size<input id="researchBatchSize" type="number" min="1" max="100" value="10" style="max-width:110px"></label><button id="queueResearch">Queue controlled research batch</button><button id="runResearchBatch">Research queued batch</button><button id="stopResearchBatch" class="secondary" hidden>Stop after current jobs</button></div><p class="hint">Batch runs are finite and manually started. Keep this page open while running. The recurring research schedule is disabled.</p>
+ <p id="researchBudget" class="hint"></p>
+ <div class="filters"><input id="contactSearch" aria-label="Search research businesses" placeholder="Business, city or original lead ID"><select id="contactStatus" aria-label="Research status"><option value="">All research statuses</option><option>queued</option><option>running</option><option>completed</option><option>manual_review</option><option>failed</option><option>blocked</option><option>budget_wait</option></select></div>
+ <div id="researchJobs"></div>
+ <section id="researchDetail" hidden><div class="section-head"><div><h2 id="researchName"></h2><p id="researchMeta"></p></div><button id="closeResearchDetail" class="secondary">Close research detail</button></div><div id="researchBusiness" class="entry"></div><p id="researchSummary" class="result"></p><button id="researchRunOne">Research this business</button><h3>Named decision-maker candidates</h3><div id="researchCandidates"></div><details><summary>Source attempts and processing history</summary><div id="researchAttempts"></div></details></section>
+</section>
