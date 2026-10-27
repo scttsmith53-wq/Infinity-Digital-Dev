@@ -1,0 +1,24 @@
+begin;
+select set_config('request.jwt.claims','{"sub":"78dfc218-78cd-43c7-9cc9-47885a5b2f82","role":"authenticated"}',true);
+set local role authenticated;
+select public.prospecting_engine('overview')->'counts' as authenticated_access;
+do $$ declare d jsonb;pid uuid;caught boolean; begin
+ d:=public.prospecting_engine('manual','{"linkedin_url":"https://www.linkedin.com/company/qa-brothers-test","company_name":"Brothers Plumbing, Heating & Electric","website":"https://brothersplumbing.com","city":"Denver","manual_confirmed":true}');pid:=(d->>'id')::uuid;
+ d:=public.prospecting_engine('detail',jsonb_build_object('id',pid));
+ if (d->'prospect'->>'legacy_lead_id')::bigint<>81 then raise exception 'FAIL original lead linkage';end if;
+ d:=public.prospecting_engine('manual','{"linkedin_url":"https://www.linkedin.com/posts/qa-post-123","company_name":"Same business different label","website":"https://www.brothersplumbing.com/","manual_confirmed":true}');
+ if (d->>'id')::uuid<>pid then raise exception 'FAIL duplicate company';end if;
+ caught:=false;begin perform public.prospecting_engine('_bootstrap');exception when insufficient_privilege then caught:=true;end;
+ if not caught then raise exception 'FAIL owner invoking worker-only path';end if;
+ caught:=false;begin perform public.prospecting_engine('decision',jsonb_build_object('id',pid,'stage','qualified'));exception when others then caught:=true;end;
+ if not caught then raise exception 'FAIL qualification without supported assessment';end if;
+ perform public.prospecting_engine('decision',jsonb_build_object('id',pid,'stage','suppressed'));
+ caught:=false;begin perform public.prospecting_engine('evidence',jsonb_build_object('id',pid,'verified',true,'source_url','https://example.org','excerpt','This synthetic evidence must be blocked.','signal_type','manual_operational'));exception when others then caught:=true;end;
+ if not caught then raise exception 'FAIL suppression gate';end if;
+ perform set_config('request.jwt.claims','{"sub":"00000000-0000-0000-0000-000000000001","role":"authenticated"}',true);
+ caught:=false;begin perform public.prospecting_engine('overview');exception when insufficient_privilege then caught:=true;end;
+ if not caught then raise exception 'FAIL nonowner access';end if;
+end $$;
+reset role;
+select jsonb_build_object('result','all assertions passed','anonymous_denied',not has_function_privilege('anon','public.prospecting_engine(text,jsonb)','EXECUTE'),'scheduler_owner_denied',not has_function_privilege('authenticated','public.prospecting_scheduler_key()','EXECUTE'),'outreach_not_sent',not exists(select 1 from prospecting.outreach where status='sent')) verification;
+rollback;
