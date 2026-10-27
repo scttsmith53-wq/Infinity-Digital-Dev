@@ -7,7 +7,7 @@ This extends the existing Supabase prospecting schema and AWS demo hosting. The 
 ## Use
 
 1. Open the workspace on a computer or phone. Continue with Google using the existing campaign owner's account. The Supabase dashboard's GitHub login is a separate identity.
-2. In **Sources & runs**, inspect collection results and errors. Three employer-approved public Greenhouse board sources are enabled. The daily collector runs after 7 a.m. America/Denver; the scheduler checks every 15 minutes and retries failures with backoff. Pause daily collection here at any time.
+2. In **Sources & runs**, inspect collection results and errors. Three manually approved public employer Greenhouse board sources are enabled. The daily collector runs after 7 a.m. America/Denver; the scheduler checks every 15 minutes and retries failures with backoff. Pause daily collection here at any time.
 3. In **Manual intake**, paste a LinkedIn profile, company or post URL and public business details you collected yourself. Confirm manual collection. No LinkedIn page is fetched or scraped.
 4. Open a prospect. Check source links, publication dates, current/closed status and original lead history. Add manually verified evidence if needed. Explicit buying interest must be separately attested; hiring alone is never buying intent.
 5. Choose **AI assess & prepare drafts**. Unchanged evidence reuses its assessment. Review fit, operational need, intent, limitations, citations and next action. Missing or expired evidence requires more research. Qualify only after human review.
