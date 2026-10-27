@@ -28,6 +28,16 @@ This extends the existing Supabase prospecting schema and AWS demo hosting. The 
 
 ## Components and permissions
 
+## Real example to review
+
+Specialty1 Partners' public practice posting lists: “Answering all incoming calls and redirecting them or keeping messages.” Source: https://job-boards.greenhouse.io/specialty1/jobs/4699429006 (published 23 July 2026; still present in the 27 October collection). A second Colorado Springs posting, published 14 October, supplies more recent operational evidence: https://job-boards.greenhouse.io/specialty1/jobs/4722116006.
+
+The saved score is 56 overall: fit 78, need 72, intent 0. Phone and front-office workflows support a relevance hypothesis; the posting does not prove missed calls, dissatisfaction, budget or buying intent. Confirm practice ownership and the appropriate operations contact before qualifying.
+
+Saved LinkedIn draft, awaiting human review: “Hi — I noticed Specialty1 Partners is in dental care, and practice postings reference incoming-call handling and front-office coordination. Is support with call handling or appointment automation relevant to your team?” No message was sent.
+
+## Technical inventory
+
 Existing `prospecting.campaigns`, `prospects`, `signals`, `assessments`, `outreach`, `activity` are reused. Added: `engine_settings`, `sources`, `collection_runs`, `source_documents`, `lead_screenings`, with RLS enabled and no direct browser table access.
 
 Browser API: `public.prospecting_engine(text,jsonb)` is SECURITY INVOKER, delegates to the private owner-checked `prospecting.engine_api`. Worker actions require the service role. Helpers use fixed empty search paths and are revoked from public/anon/authenticated. `assessment_current` rejects missing, expired, closed or changed quoted evidence. Latest assessment is required to approve drafts. Suppression cancels pending approvals. Legacy DNC flags across matching duplicates also block actions.
