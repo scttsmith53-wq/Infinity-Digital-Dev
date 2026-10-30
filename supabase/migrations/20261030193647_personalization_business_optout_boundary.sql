@@ -7,4 +7,3 @@ select not exists(select 1 from public.lead_finder_leads l where l.id=lid and no
  and not exists(select 1 from prospecting.personalization_suppressions s where (s.kind='email' and s.value=lower(trim(l.email))) or(s.kind='domain' and s.value in(split_part(lower(trim(l.email)),'@',2),prospecting.domain(l.website))))
  and not exists(select 1 from public.lead_finder_leads x where (lower(trim(x.email))=lower(trim(l.email)) or (prospecting.domain(l.website)<>'' and prospecting.domain(x.website)=prospecting.domain(l.website))) and (coalesce(x.do_not_contact,false) or coalesce(x.call_status,'') ~* 'not.?interested|unsubscr|bounc|dnc|opt.?out|stop')));
 $$;
-

@@ -55,4 +55,3 @@ export async function handler(req:Request){
  }catch(e){return Response.json({error:e.message},{status:e.message==='Unauthorized'?401:400,headers});}
 }
 Deno.serve(handler);
-
