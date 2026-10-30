@@ -1,0 +1,35 @@
+-- All review, readiness, suppression, export and recovery fixtures roll back.
+begin;
+do $$declare r jsonb;vid uuid;email text;committed numeric;begin
+ if has_function_privilege('anon','public.prospecting_personalization(text,jsonb)','execute') then raise exception 'Anonymous RPC grant';end if;
+ if has_table_privilege('authenticated','prospecting.personalization_versions','select') then raise exception 'Direct private table grant';end if;
+ perform set_config('request.jwt.claims','{"role":"authenticated","sub":"00000000-0000-0000-0000-000000000001"}',true);
+ begin perform public.prospecting_personalization('overview','{}');raise exception 'Nonowner accepted';exception when insufficient_privilege then null;end;
+ perform set_config('request.jwt.claims','{"role":"authenticated","sub":"78dfc218-78cd-43c7-9cc9-47885a5b2f82"}',true);
+ begin perform public.prospecting_personalization('_claim','{}');raise exception 'Owner accepted as worker';exception when insufficient_privilege then null;end;
+ begin perform public.prospecting_personalization('export','{"production":true}');raise exception 'Readiness gate failed';exception when raise_exception then if sqlerrm not like 'Confirm unsubscribe%' then raise;end if;end;
+ select id,recipient into vid,email from prospecting.personalization_versions where lead_id=1206 order by created_at desc limit 1;
+ perform public.prospecting_personalization('review',jsonb_build_object('id',vid,'status','approved','evidence_checked',true));
+ update prospecting.personalization_settings set unsubscribe_confirmed=true,suppression_checked_at=now(),suppression_source='ROLLBACK ONLY test fixture' where id;
+ r:=public.prospecting_personalization('export','{"production":true,"scope":"top","industry":"property-management","state":"CO"}');
+ if jsonb_array_length(r->'rows')<>1 then raise exception 'Expected exactly one approved export fixture';end if;
+ r:=public.prospecting_personalization('export','{"production":true,"scope":"top","industry":"property-management","state":"CO"}');
+ if jsonb_array_length(r->'rows')<>0 then raise exception 'Duplicate export accepted';end if;
+ perform public.prospecting_personalization('suppression_sync',jsonb_build_object('complete',true,'source','ROLLBACK ONLY complete snapshot fixture','items',jsonb_build_array(jsonb_build_object('kind','email','value',upper(email),'reason','fixture'))));
+ if not prospecting.personalization_blocked(1206) then raise exception 'Normalized-email suppression failed';end if;
+ select committed_usd into committed from prospecting.personalization_settings where id;
+ update prospecting.personalization_jobs set status='running',lease=gen_random_uuid(),lease_until=now()-interval '1 second',attempts=1 where lead_id=1206;
+ perform public.prospecting_personalization('recover','{}');
+ if(select status from prospecting.personalization_jobs where lead_id=1206)<>'queued' then raise exception 'Expired lease recovery failed';end if;
+ if(select committed_usd from prospecting.personalization_settings where id)<>committed then raise exception 'Recovery refunded uncertain spend';end if;
+ perform set_config('request.jwt.claims','{"role":"service_role"}',true);
+ r:=public.prospecting_personalization('_cached_version','{"lead_id":1,"input_hash":"missing-fixture"}');
+ if r is not null and r<>'null'::jsonb then raise exception 'Cache miss is truthy';end if;
+ perform public.prospecting_personalization('_clear_suppression_readiness','{}');
+ perform public.prospecting_personalization('_campaign_suppression_sync','{"complete":false,"source":"ROLLBACK ONLY partial campaign fixture","items":[]}');
+ if(select suppression_checked_at from prospecting.personalization_settings where id) is not null then raise exception 'Partial campaign import marked global readiness';end if;
+ r:=public.prospecting_personalization('_claim','{}');
+ if coalesce((r->>'claimed')::boolean,false) then raise exception 'Paused worker accepted paid job';end if;
+end$$;
+rollback;
+select 'PASS: owner boundaries, private grants, readiness, approval, normalized suppression, export deduplication, cache miss, paused worker and expired-lease recovery; all fixtures rolled back' as validation;
