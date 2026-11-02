@@ -1,3 +1,13 @@
+## Current offer correction - 30 October 2026
+
+All 50 earlier versions are withdrawn. The 25 new initial emails and 50 followups offer an Ava AI phone receptionist demo. All pass source/copy QA for owner review; none is owner-approved or import-ready. Cached research was reused at $0 additional provider cost; the paid worker remains paused.
+
+Read-only inspection found direct-answer phone assignments, an all-hours schedule, business-name role-play and caller questions. Contact-note and email summaries are configured but delivery was not tested. Role-play appointment times are pretend. No booking, transfer, calendar or CRM action exists; no knowledge base is selected. No phone setting, call or SMS was changed or triggered.
+
+`offer-profile.mjs` restricts campaign capabilities. The generator and structured schema require this offer, QA rejects unsupported services/actions, and database approval/export require the current profile. Prospect facts personalize the caller scenario. Initial assembly: observation, receptionist offer, demo question, CTA, sender footer. `rewrite-phone-pilot.mjs` reproduces the manual revision from private snapshots without calling a paid provider.
+
+Historical details below describe the original pilot. The old 19-pass/6-revision result is superseded; no prior draft remains review-ready.
+
 # Evidence-backed personalization pilot
 
 Live UI: https://demo.infinitydigitaldev.com/linkedin-intake.html â†’ **Personalized drafts**.
@@ -25,7 +35,7 @@ Selection takes the first original-ranked eligible lead in each state/industry s
 
 Approved separate pilot cap: $1. Reported provider token usage prices to $0.03564105; committed ledger $0.07564105 includes $0.04 retained for two interrupted workers with unknown spend. This is application metering, not an invoice reconciliation. External search and paid enrichment: $0. Company HTTP research has no per-call API fee; existing hosting/network costs were not separately priced.
 
-Illustrative model-only extrapolation at this pilot’s reported average: about $2.85 for 2,000 businesses or $21.05 for 14,767. The conservative $0.02-per-attempt reservation envelope is $40 or $295.34, before retries. Coverage, page access and revision needs vary; these are estimates, not authorization to spend. Full processing remains disabled.
+Illustrative model-only extrapolation at this pilotï¿½s reported average: about $2.85 for 2,000 businesses or $21.05 for 14,767. The conservative $0.02-per-attempt reservation envelope is $40 or $295.34, before retries. Coverage, page access and revision needs vary; these are estimates, not authorization to spend. Full processing remains disabled.
 
 One job per request, UI concurrency one, server concurrency ceiling two, four-minute leases, three attempts, 8-second source timeout with bounded transient retry, maximum four public pages, 1.2 MB download / 350 KB stripped-HTML parse caps, 6,500 retained text characters per page and a 65-second crawl window. Prompt input and 2,600-token output fit a $0.02 reservation per attempt. Expired-worker reservations are retained until reconciled. Current company evidence is reused for 30 days; the cache timestamp is not extended merely by reading it. Identity is only used for a matching approved professional email. No name was verified for the 25 recipients, so all use `there`.
 

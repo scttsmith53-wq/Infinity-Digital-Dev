@@ -9,6 +9,10 @@ do $$declare r jsonb;vid uuid;email text;committed numeric;begin
  begin perform public.prospecting_personalization('_claim','{}');raise exception 'Owner accepted as worker';exception when insufficient_privilege then null;end;
  begin perform public.prospecting_personalization('export','{"production":true}');raise exception 'Readiness gate failed';exception when raise_exception then if sqlerrm not like 'Confirm unsubscribe%' then raise;end if;end;
  select id,recipient into vid,email from prospecting.personalization_versions where lead_id=1206 order by created_at desc limit 1;
+ -- Even a manually restored QA flag must not make the withdrawn offer approvable.
+ update prospecting.personalization_versions set qa_status='approved_for_review',research=research-'offer_profile_id' where id=vid;
+ begin perform public.prospecting_personalization('review',jsonb_build_object('id',vid,'status','approved','evidence_checked',true));raise exception 'Old offer accepted';exception when raise_exception then if sqlerrm not like '%phone-receptionist offer%' then raise;end if;end;
+ update prospecting.personalization_versions set research=jsonb_set(research,'{offer_profile_id}','"idd-ava-phone-demo-v1"') where id=vid;
  perform public.prospecting_personalization('review',jsonb_build_object('id',vid,'status','approved','evidence_checked',true));
  update prospecting.personalization_settings set unsubscribe_confirmed=true,suppression_checked_at=now(),suppression_source='ROLLBACK ONLY test fixture' where id;
  r:=public.prospecting_personalization('export','{"production":true,"scope":"top","industry":"property-management","state":"CO"}');

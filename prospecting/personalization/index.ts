@@ -1,3 +1,4 @@
+import {offerProfile} from './offer-profile.mjs';
 import {run} from './worker.ts';
 import {parseCSV,csv,fields,master} from './core.mjs';
 import {safeUrl,publicIp} from './research-core.mjs';
@@ -32,7 +33,7 @@ export async function handler(req:Request){
  const path='smartlead/2026-10-27/smartlead-top2000-ALL.csv';const r=await fetch(BASE+'/storage/v1/object/authenticated/exports/'+path,{headers:{apikey:SERVICE,Authorization:'Bearer '+SERVICE}});if(!r.ok)throw Error('Original shortlist unavailable; ranking will not be replaced');
  const rows=parseCSV(await r.text());result=await rpc('_snapshot',{source_path:path,rows:rows.map(r=>({lead_id:r.lead_id,lead_score:r.lead_score}))});}
  }
- else if(d.action==='capabilities')result={smartlead_api_configured:!!Deno.env.get('SMARTLEAD_API_KEY'),smartlead_campaign_configured:!!Deno.env.get('SMARTLEAD_CAMPAIGN_ID'),enrollment_enabled:false,automatic_sending:false,master,model:'gpt-5.6-luna',external_search_enabled:false,paid_enrichment_enabled:false};
+ else if(d.action==='capabilities')result={smartlead_api_configured:!!Deno.env.get('SMARTLEAD_API_KEY'),smartlead_campaign_configured:!!Deno.env.get('SMARTLEAD_CAMPAIGN_ID'),enrollment_enabled:false,automatic_sending:false,reviewed_offer:offerProfile,master,model:'gpt-5.6-luna',external_search_enabled:false,paid_enrichment_enabled:false};
  else if(d.action==='smartlead_sync'){
  const key=Deno.env.get('SMARTLEAD_API_KEY'),campaign=Deno.env.get('SMARTLEAD_CAMPAIGN_ID');if(!key||!campaign)throw Error('Smartlead API is not configured. Import a current complete suppression snapshot manually.');
  // Read-only integration. No lead upload, campaign edit, or sending endpoint exists here.
