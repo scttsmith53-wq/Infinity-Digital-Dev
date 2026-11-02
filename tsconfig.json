@@ -17,5 +17,5 @@
     "paths": { "@/*": ["./*"] }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "prospecting/functions", "prospecting/contact-research"]
+  "exclude": ["node_modules", "prospecting/functions", "prospecting/contact-research", "prospecting/personalization"]
 }

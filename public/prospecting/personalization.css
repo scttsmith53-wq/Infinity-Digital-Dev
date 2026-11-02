@@ -1,0 +1,8 @@
+#personalization .filters{flex-wrap:wrap;margin-top:20px}
+#personalization .filters>*{flex:1 1 155px;min-width:0;max-width:100%}
+#personalization pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.6 system-ui;max-width:100%}
+#personalization .lead>div{min-width:0;flex:1 1 220px;overflow-wrap:anywhere}
+#personalization .lead>button{align-self:center}
+#personalDetail{margin:24px 0;scroll-margin-top:20px;overflow-wrap:anywhere}
+#personalDetail .draft,#personalDetail pre{min-width:0;max-width:100%;overflow-wrap:anywhere}
+@media(max-width:600px){#personalization .filters>*{flex-basis:100%}#personalization .actions>button{max-width:100%;white-space:normal}#personalDetail .draft{padding:15px}}

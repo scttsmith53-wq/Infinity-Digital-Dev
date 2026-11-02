@@ -1,0 +1,1 @@
+create index if not exists personalization_export_items_history on prospecting.personalization_export_items(export_id);

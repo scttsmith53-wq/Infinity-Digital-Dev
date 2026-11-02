@@ -1,0 +1,1 @@
+do $$begin execute replace(pg_get_functiondef('prospecting.personalization_api(text,jsonb)'::regprocedure),'return to_jsonb(v);','return case when v.id is null then null else to_jsonb(v) end;');end$$;
