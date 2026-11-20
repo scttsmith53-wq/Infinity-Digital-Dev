@@ -1,8 +1,14 @@
-import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import JsonLd from '@/components/JsonLd'
+import { faqJsonLd, pageMetadata, PHONE_DISPLAY, PHONE_TEL } from '@/lib/site'
 
-export const metadata = { title: 'Contact Us | Infinity Digital Dev' }
+export const metadata = pageMetadata({
+  title: 'Contact Us in Denver | Infinity Digital Development',
+  description:
+    "Call Infinity Digital Development at (970) 601-4017. Scott Smith's Denver, Colorado team builds AI websites, CRM automation, and swag stores.",
+  path: '/contact',
+})
 
 const faqs = [
   { q: 'How long does a custom AI website take?', a: 'Our standard development cycle is 2–4 weeks, depending on the number of pages and complexity of integrations.' },
@@ -15,6 +21,7 @@ const faqs = [
 export default function ContactPage() {
   return (
     <main>
+      <JsonLd data={faqJsonLd(faqs)} />
       <Navigation />
       <section className="relative pt-xxl pb-xl px-margin max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
         <div className="flex flex-col gap-md">
@@ -32,7 +39,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-label-sm text-on-surface-variant">Phone</p>
-                <a href="tel:7202527037" className="text-body-md font-bold text-on-surface hover:text-secondary transition-colors">720-252-7037</a>
+                <a href={`tel:${PHONE_TEL}`} className="text-body-md font-bold text-on-surface hover:text-secondary transition-colors">{PHONE_DISPLAY}</a>
               </div>
             </div>
             <div className="flex items-start gap-md">
@@ -41,7 +48,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <p className="text-label-sm text-on-surface-variant">Location</p>
-                <p className="text-body-md font-bold text-on-surface">Denver, CO (Remote-Friendly)</p>
+                <p className="text-body-md font-bold text-on-surface">Denver, Colorado</p>
               </div>
             </div>
           </div>
@@ -61,7 +68,7 @@ export default function ContactPage() {
             </div>
             <div className="flex flex-col gap-xs">
               <label className="text-label-sm text-on-surface-variant">Phone Number</label>
-              <input className="bg-surface/50 border border-outline/30 rounded-lg p-md text-on-surface focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="(720) 555-0000" type="tel" />
+              <input className="bg-surface/50 border border-outline/30 rounded-lg p-md text-on-surface focus:ring-1 focus:ring-secondary focus:border-secondary outline-none transition-all" placeholder="Your phone number" type="tel" />
             </div>
             <div className="flex flex-col gap-xs">
               <label className="text-label-sm text-on-surface-variant">What do you need?</label>

@@ -1,8 +1,14 @@
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { pageMetadata } from '@/lib/site'
 
-export const metadata = { title: 'AI Websites | Infinity Digital Dev' }
+export const metadata = pageMetadata({
+  title: 'Custom AI Websites | Infinity Digital Development',
+  description:
+    'Custom Next.js sites with an AI chat agent that books appointments. From $750, live in 2–4 weeks. Built in Denver by Infinity Digital Development.',
+  path: '/ai-websites',
+})
 
 const features = [
   { icon: 'code', title: 'Custom Coded Site', desc: 'Built from scratch in Next.js. No page builders, no bloated templates. Fast, secure, and yours.' },

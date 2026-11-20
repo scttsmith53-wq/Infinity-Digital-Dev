@@ -50,7 +50,7 @@ export default function ServicesSection() {
 
             <Link
               href={service.href}
-              className="mt-lg inline-flex items-center gap-sm text-secondary text-label-md opacity-0 group-hover:opacity-100 transition-opacity"
+              className="mt-lg inline-flex items-center gap-sm text-secondary text-label-md hover:gap-md transition-all"
             >
               Learn more <span className="material-symbols-outlined text-sm">arrow_forward</span>
             </Link>

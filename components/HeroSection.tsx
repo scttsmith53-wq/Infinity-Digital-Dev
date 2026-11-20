@@ -26,7 +26,7 @@ export default function HeroSection() {
 
           {/* Subheadline */}
           <p className="text-body-lg text-on-surface-variant max-w-xl mx-auto lg:mx-0">
-            AI-powered websites, CRM automations, and branded swag stores for small businesses ready to grow.
+            Infinity Digital Development is a Denver, Colorado agency founded by Scott Smith. We build AI-powered websites, CRM automations, and branded swag stores for small businesses across the United States.
           </p>
 
           {/* CTAs */}
