@@ -2,8 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { pageMetadata } from '@/lib/site'
 
-export const metadata = { title: 'Employee Swag Stores | Infinity Digital Dev' }
+export const metadata = pageMetadata({
+  title: 'Employee Swag Stores | Infinity Digital Development',
+  description:
+    'Employee swag stores from Infinity Digital Development in Denver. Your team orders branded gear online and it ships to their door, live in under a week.',
+  path: '/swag-stores',
+})
 
 const catalogImgItems = [
   { img: '/images/swag-hoodie.png', name: 'Apparel', desc: 'T-shirts, polos, hoodies' },

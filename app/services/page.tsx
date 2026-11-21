@@ -1,8 +1,14 @@
 import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { pageMetadata } from '@/lib/site'
 
-export const metadata = { title: 'Services | Infinity Digital Dev' }
+export const metadata = pageMetadata({
+  title: 'Websites, CRM & Swag | Infinity Digital Development',
+  description:
+    'Custom AI websites, Go High Level CRM automation, and employee swag stores from Infinity Digital Development in Denver, Colorado, for businesses nationwide.',
+  path: '/services',
+})
 
 const services = [
   {

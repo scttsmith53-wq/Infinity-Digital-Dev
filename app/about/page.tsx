@@ -2,8 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { pageMetadata } from '@/lib/site'
 
-export const metadata = { title: 'About Us | Infinity Digital Dev' }
+export const metadata = pageMetadata({
+  title: 'About Scott Smith | Infinity Digital Development',
+  description:
+    'Meet Scott Smith, founder of Infinity Digital Development in Denver, Colorado. US Army veteran building AI websites and automation for small businesses.',
+  path: '/about',
+})
 
 const principles = [
   { icon: 'code', title: 'Clean Code', desc: 'We treat every line of code as a facility. Our developers write expressive, maintainable, and highly optimized logic designed for long-term scalability.' },
@@ -73,12 +79,12 @@ export default function AboutPage() {
             </p>
             <div className="flex items-center gap-md">
               <span className="material-symbols-outlined text-secondary">location_on</span>
-              <span className="text-label-md font-bold text-on-surface">Based in Denver, CO — Serving Businesses Nationwide</span>
+              <span className="text-label-md font-bold text-on-surface">Based in Denver, Colorado — Serving Businesses Nationwide</span>
             </div>
           </div>
           <div className="bg-background rounded-xl border border-outline/20 p-xl space-y-lg">
+            {/* TODO: Add a verified client or outcome stat only after it can be sourced. Do not restore the unpublished "50+ businesses served" claim. */}
             {[
-              { icon: 'people', stat: '50+', label: 'Businesses Served Nationwide' },
               { icon: 'schedule', stat: '2–4 wks', label: 'Average Time to Launch' },
               { icon: 'thumb_up', stat: '100%', label: 'Custom Code, No Templates' },
               { icon: 'support_agent', stat: '24/7', label: 'AI Agents Active' },
@@ -106,7 +112,7 @@ export default function AboutPage() {
               <div className="relative w-56 h-56">
                 <Image
                   src="/images/scott-headshot.jpg"
-                  alt="Scott — Founder, Infinity Digital Dev"
+                  alt="Scott Smith, founder of Infinity Digital Development in Denver, Colorado"
                   fill
                   className="object-cover rounded-2xl shadow-2xl"
                 />
@@ -116,7 +122,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="space-y-md text-center md:text-left">
-              <h3 className="text-h2 font-bold text-on-surface">Scott</h3>
+              <h3 className="text-h2 font-bold text-on-surface">Scott Smith</h3>
               <p className="text-body-lg text-on-surface-variant">
                 US Army veteran, licensed real estate agent, and NMLS-licensed mortgage professional turned AI automation builder. Scott founded Infinity Digital Dev to bring enterprise-grade digital tools to small and mid-size businesses at a price point that actually makes sense.
               </p>

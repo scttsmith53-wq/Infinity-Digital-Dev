@@ -2,8 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { pageMetadata } from '@/lib/site'
 
-export const metadata = { title: 'CRM & Automation | Infinity Digital Dev' }
+export const metadata = pageMetadata({
+  title: 'CRM Automation | Infinity Digital Development',
+  description:
+    'Go High Level setup, lead pipelines, and automated follow-up from Infinity Digital Development in Denver, Colorado for businesses across the US.',
+  path: '/crm-automation',
+})
 
 const stats = [
   { value: '40%', label: 'Faster Lead Response', color: 'text-secondary' },

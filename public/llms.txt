@@ -1,0 +1,29 @@
+# Infinity Digital Development
+
+> Infinity Digital Development (IDD, also called Infinity Digital Dev) is a Denver, Colorado agency founded by Scott Smith. It sells custom-coded AI-powered websites, CRM automation, and employee swag stores to small businesses across the United States.
+
+Infinity Digital Development is based in Denver, Colorado, United States. The founder is Scott Smith. The public phone number is (970) 601-4017. The company serves clients throughout the United States. It does not have an office in Kenyon, Minnesota.
+
+Primary website: https://infinitydigitaldev.com
+
+## Services
+
+- [AI-powered websites](https://infinitydigitaldev.com/ai-websites): Custom-coded Next.js sites with an AI chat agent that answers questions, captures leads, and books appointments. Published pricing starts at $750 one-time. Optional maintenance is $199/month. A plan that adds Go High Level CRM and an AI phone agent is $299/month. A typical site launches in 2–4 weeks.
+- [CRM automation](https://infinitydigitaldev.com/crm-automation): Go High Level setup, lead pipelines, and automated follow-up sequences for small businesses.
+- [Employee swag stores](https://infinitydigitaldev.com/swag-stores): Branded online stores where employees order company gear that ships to them. A store can go live in under a week.
+- [Services overview](https://infinitydigitaldev.com/services): AI websites, CRM automation, and employee swag stores.
+
+## Company
+
+- [About](https://infinitydigitaldev.com/about): Scott Smith, founder of Infinity Digital Development, based in Denver, Colorado. US Army veteran, licensed real estate agent, and NMLS-licensed mortgage professional.
+- [Contact](https://infinitydigitaldev.com/contact): Phone (970) 601-4017. Denver, Colorado. Includes frequently asked questions about project timelines, maintenance, the AI phone agent, working with businesses outside Colorado, and contracts.
+
+## Sister sites
+
+- [Infinity Digital HQ](https://infinitydigitalhq.com)
+- [Infinity Digital Development](https://infinitydigitaldevelopment.com)
+- [Sentinel Hunter](https://sentinelhunter.co)
+
+## Optional
+
+- [Sitemap](https://infinitydigitaldev.com/sitemap.xml)

@@ -21,10 +21,14 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ```
 app/
-  layout.tsx        ← fonts, metadata, global styles
+  layout.tsx        ← fonts, metadata, global styles, JSON-LD
   page.tsx          ← homepage
-  contact/page.tsx  ← contact form
+  robots.ts         ← crawler rules, including AI crawlers, and sitemap
+  sitemap.ts        ← XML sitemap
+  contact/page.tsx  ← contact form and FAQ
   globals.css       ← glass-card, mesh-gradient, text-gradient utilities
+public/
+  llms.txt          ← plain-language description for AI answer engines
 components/
   Navigation.tsx
   HeroSection.tsx
@@ -40,10 +44,10 @@ components/
 ## What to update before launch
 
 1. **Logo** — replace the text logo in Navigation.tsx and Footer.tsx with your actual logo image
-2. **Phone number** — already set to 720-252-7037 throughout
+2. **Phone number** — public number is (970) 601-4017
 3. **Contact form** — wire up to Go High Level webhook (replace the button onClick)
-4. **Testimonials** — swap placeholder names/quotes for real client reviews
-5. **Trusted By** — replace placeholder company names with real clients
+4. **Testimonials** — the homepage has a TODO where real client reviews should go. Do not add quotes until they are verified.
+5. **Client logos** — the homepage has a TODO where real client logos should go. Do not add placeholder brands.
 
 ## Color Palette
 

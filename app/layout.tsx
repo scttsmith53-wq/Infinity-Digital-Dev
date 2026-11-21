@@ -1,25 +1,21 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import JsonLd from '@/components/JsonLd'
+import { homeMetadata, organizationJsonLd, SITE_NAME, SITE_URL } from '@/lib/site'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Infinity Digital Dev | AI-Powered Websites & Digital Solutions',
-  description: 'Custom coded AI-powered websites, CRM automations, and employee swag stores for small businesses nationwide.',
-  openGraph: {
-    title: 'Infinity Digital Dev | AI-Powered Websites',
-    description: 'Custom coded AI-powered websites, CRM automations, and swag stores for small businesses nationwide.',
-    url: 'https://infinitydigitaldev.com',
-    siteName: 'Infinity Digital Dev',
-    images: [{ url: '/images/og-image.png', width: 1200, height: 630 }],
-    locale: 'en_US',
-    type: 'website',
-  },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/images/favicon-512.png',
+  metadataBase: new URL(SITE_URL),
+  ...homeMetadata,
+  authors: [{ name: 'Scott Smith', url: `${SITE_URL}/about` }],
+  creator: 'Scott Smith',
+  publisher: SITE_NAME,
+  robots: {
+    index: true,
+    follow: true,
   },
 }
 
@@ -33,6 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={inter.className}>
+        <JsonLd data={organizationJsonLd} />
         {children}
         <script
           src="https://widgets.leadconnectorhq.com/loader.js"

@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -14,25 +11,22 @@ const navLinks = [
 ]
 
 export default function Navigation() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-
   return (
-    <header className="bg-primary/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-50">
+    <header className="bg-primary/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-50 relative">
       <div className="flex justify-between items-center h-20 px-gutter max-w-7xl mx-auto">
         <Link href="/" className="flex items-center">
           <Image
             src="/images/logo.png"
-alt="Infinity Digital Dev"
-width={200}
-height={67}
-className="h-10 w-auto"
-quality={100}
-priority
+            alt="Infinity Digital Development"
+            width={200}
+            height={67}
+            className="h-10 w-auto"
+            quality={100}
+            priority
           />
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-lg">
+        <nav className="hidden lg:flex items-center gap-lg" aria-label="Primary">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -51,38 +45,36 @@ priority
           Get a Quote
         </Link>
 
-        {/* Mobile hamburger */}
-        <button
-          className="lg:hidden text-on-primary p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className="material-symbols-outlined">{mobileOpen ? 'close' : 'menu'}</span>
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-surface border-t border-white/5 px-gutter py-md space-y-md">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block text-on-surface-variant hover:text-secondary py-sm transition-colors"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="block bg-secondary text-primary px-lg py-sm rounded-lg font-bold text-center mt-md"
-            onClick={() => setMobileOpen(false)}
+        <details className="lg:hidden group">
+          <summary
+            className="list-none cursor-pointer text-on-primary p-2 [&::-webkit-details-marker]:hidden"
+            aria-label="Toggle menu"
           >
-            Get a Quote
-          </Link>
-        </div>
-      )}
+            <span className="material-symbols-outlined group-open:hidden">menu</span>
+            <span className="material-symbols-outlined hidden group-open:inline">close</span>
+          </summary>
+          <nav
+            className="absolute left-0 right-0 top-20 bg-surface border-t border-white/5 px-gutter py-md space-y-md"
+            aria-label="Mobile"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="block text-on-surface-variant hover:text-secondary py-sm transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Link
+              href="/contact"
+              className="block bg-secondary text-primary px-lg py-sm rounded-lg font-bold text-center mt-md"
+            >
+              Get a Quote
+            </Link>
+          </nav>
+        </details>
+      </div>
     </header>
   )
 }
